@@ -35,7 +35,7 @@ def create_rule(rule_name, list_ids):
         "name": rule_name,
         "description": "Allow",
         "action": "allow",
-        "traffic": " or ".join(f'any(dns.domains[*] in ${lst})' for lst in list_ids),
+        "traffic": " or ".join(f'any(dns.hosts[*] in ${lst})' for lst in list_ids),
         "enabled": True,
     }
     status, response = cloudflare_gateway_request("POST", endpoint, body=json.dumps(data))
@@ -48,7 +48,7 @@ def update_rule(rule_name, rule_id, list_ids):
         "name": rule_name,
         "description": "Allow",
         "action": "allow",
-        "traffic": " or ".join(f'any(dns.domains[*] in ${lst})' for lst in list_ids),
+        "traffic": " or ".join(f'any(dns.hosts[*] in ${lst})' for lst in list_ids),
         "enabled": True,
     }
     status, response = cloudflare_gateway_request("PUT", endpoint, body=json.dumps(data))

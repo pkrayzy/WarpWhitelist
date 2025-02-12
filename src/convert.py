@@ -7,7 +7,6 @@ from src import (
 
 def convert_to_domain_list(white_content: str) -> list[str]:
     white_domains = set()
-
     
     extract_domains(white_content, white_domains)
     info(f"Number of whitelisted domains: {len(white_domains)}")
@@ -30,21 +29,3 @@ def extract_domains(content: str, domains: set[str]) -> None:
                 domains.add(domain)
         except Exception:
             pass
-            
-def remove_subdomains_if_higher(domains: set[str]) -> set[str]:
-    top_level_domains = set()
-    
-    for domain in domains:
-        parts = domain.split(".")
-            
-        is_lower_subdomain = False            
-        for i in range(1, len(parts)):
-            higher_domain = ".".join(parts[i:])
-            if higher_domain in domains:
-                is_lower_subdomain = True
-                break
-                    
-        if not is_lower_subdomain:
-            top_level_domains.add(domain)
-                
-    return top_level_domains

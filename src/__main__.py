@@ -60,8 +60,18 @@ class CloudflareManager:
 
                 if remove_items or new_items:
                     update_list(list_id, remove_items, new_items)
-                    info(f"Updated list: {list_name}")
+                    info(
+                        f"Updated list: {list_name} "
+                        f"| Added {len(new_items)} domains,"
+                        f"Removed {len(remove_items)} domains "
+                        f"| Total domains in list: {len(chunk)}"
+                    )
                     self.cache["mapping"][list_id] = list(chunk)
+                else:
+                    silent_error(
+                        f"Skipped update list: {list_name} "
+                        f"| Total domains in list: {len(chunk)}"
+                    )
                 
                 new_list_ids.append(list_id)
             else:

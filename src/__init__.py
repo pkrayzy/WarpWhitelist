@@ -4,7 +4,7 @@ from sys import exit
 from src.colorlog import logger
 
 # Constants
-PREFIX = "Allow-DNS-Filters"
+PREFIX = "Allowlist"
 CACHE_FILE = "cloudflare_cache.json"
 
 # Read .env variables 

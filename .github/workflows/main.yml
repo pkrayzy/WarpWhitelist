@@ -1,8 +1,10 @@
-name: Add Rules to Cloudflare Gateway
+name: Update Allowlist Rules
 on:
-  push:
   schedule:
-    - cron: "0 0 * * 5"
+  - cron: "0 3 */3 * *"
+  push:
+    branches:
+    - main
   workflow_dispatch:
 jobs:
   run:
@@ -37,5 +39,8 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-cloudflare-cache-
       
-      - name: Cloudflare Gateway Zero Trust 
+      - name: Delete lists
+        run: python -m src leave
+      
+      - name: Create lists
         run: python -m src run

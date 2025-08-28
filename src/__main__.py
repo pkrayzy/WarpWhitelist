@@ -11,7 +11,7 @@ from src.cloudflare import (
 class CloudflareManager:
     def __init__(self, prefix):
         self.list_name = f"[{prefix}]"
-        self.rule_name = f"[{prefix}] Allow"
+        self.rule_name = f"{prefix}"
         self.cache = utils.load_cache()
 
     def update_resources(self):

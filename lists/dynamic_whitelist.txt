@@ -1,2 +1,9 @@
-# connect.facebook.net
-api-js.datadome.co
+||ecbsn.com^
+||tracking.sp.sofi.com^
+||ablink.r.sofi.com^
+||affilired.com^
+||rakuten.ca^
+||rakuten.co.uk^
+||rakuten.com^
+||links.h6.hilton.com^
+||rakuten.co.jp^

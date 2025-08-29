@@ -39,8 +39,8 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-cloudflare-cache-
       
-      - name: Delete lists
-        run: python -m src leave
+      # - name: Delete lists
+      #   run: python -m src leave
       
       - name: Create lists
         run: python -m src run

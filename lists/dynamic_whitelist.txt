@@ -9,3 +9,4 @@
 ||rakuten.co.jp^
 ||ecom-app.rakutenadvertising.io^
 ||logs.browser-intake-datadoghq.com^
+||go-mpulse.net^

@@ -11,3 +11,4 @@
 ||logs.browser-intake-datadoghq.com^
 ||go-mpulse.net^
 ||dcf.espn.com^
+||edge-geo.nc0.co^

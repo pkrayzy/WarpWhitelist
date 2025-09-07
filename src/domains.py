@@ -10,10 +10,13 @@ class DomainConverter:
     def __init__(self):
         # Map of environment variables to file paths
         self.env_file_map = {
+            "ADLIST_URLS": "./lists/adlist.ini",
             "WHITELIST_URLS": "./lists/whitelist.ini",
+            # "DYNAMIC_BLACKLIST": "./lists/dynamic_blacklist.txt",
             "DYNAMIC_WHITELIST": "./lists/dynamic_whitelist.txt"
         }
-        # Read whitelist URLs from environment and files
+        # Read adlist and whitelist URLs from environment and files
+        self.adlist_urls = self.read_urls("ADLIST_URLS")
         self.whitelist_urls = self.read_urls("WHITELIST_URLS")
 
     def read_urls_from_file(self, filename):
@@ -97,12 +100,22 @@ class DomainConverter:
         return data
 
     def process_urls(self):
+        block_content = ""
         white_content = ""
+        for url in self.adlist_urls:
+            block_content += self.download_file(url)
         for url in self.whitelist_urls:
             white_content += self.download_file(url)
         
         # Read additional dynamic lists
+        dynamic_blacklist = os.getenv("DYNAMIC_BLACKLIST", "")
         dynamic_whitelist = os.getenv("DYNAMIC_WHITELIST", "")
+        
+        if dynamic_blacklist:
+            block_content += dynamic_blacklist
+        else:
+            with open(self.env_file_map["DYNAMIC_BLACKLIST"], "r") as black_file:
+                block_content += black_file.read()
         
         if dynamic_whitelist:
             white_content += dynamic_whitelist
@@ -111,5 +124,5 @@ class DomainConverter:
                 white_content += white_file.read()
         
         # Convert the collected content into a domain list
-        domains = convert.convert_to_domain_list(white_content)
+        domains = convert.convert_to_domain_list(block_content, white_content)
         return domains

@@ -12,3 +12,4 @@
 ||go-mpulse.net^
 ||dcf.espn.com^
 ||edge-geo.nc0.co^
+||vision.fn-pz.com^
